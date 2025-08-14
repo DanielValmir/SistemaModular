@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{473595F1-20C1-4AF4-9C19-CA2F8FA32827}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Shell\Shell.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ModClientes\ModClientes.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ModFinanceiro\ModFinanceiro.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Shell">
+        <MSBuild Projects="Shell\Shell.dproj"/>
+    </Target>
+    <Target Name="Shell:Clean">
+        <MSBuild Projects="Shell\Shell.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Shell:Make">
+        <MSBuild Projects="Shell\Shell.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ModClientes">
+        <MSBuild Projects="ModClientes\ModClientes.dproj"/>
+    </Target>
+    <Target Name="ModClientes:Clean">
+        <MSBuild Projects="ModClientes\ModClientes.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ModClientes:Make">
+        <MSBuild Projects="ModClientes\ModClientes.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ModFinanceiro">
+        <MSBuild Projects="ModFinanceiro\ModFinanceiro.dproj"/>
+    </Target>
+    <Target Name="ModFinanceiro:Clean">
+        <MSBuild Projects="ModFinanceiro\ModFinanceiro.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ModFinanceiro:Make">
+        <MSBuild Projects="ModFinanceiro\ModFinanceiro.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Shell;ModClientes;ModFinanceiro"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Shell:Clean;ModClientes:Clean;ModFinanceiro:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Shell:Make;ModClientes:Make;ModFinanceiro:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
